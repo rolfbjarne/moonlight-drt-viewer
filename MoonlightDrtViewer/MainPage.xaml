@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="MoonlightDrtViewer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignHeight="964" d:DesignWidth="1754"
+             xmlns:data="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data"
+             xmlns:sdk="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls">
+
+    <Grid x:Name="LayoutRoot" Background="White"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+
+        <sdk:TabControl HorizontalAlignment="Stretch" Name="tabMain" VerticalAlignment="Stretch" VerticalContentAlignment="Bottom">
+            <sdk:TabItem Header="Login" Name="tabLogin">
+                <Grid Name="gridLogin">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Height="28"  Name="lblWebService" Text="Web service:" />
+                    <TextBox Grid.Column="1" Grid.Row="0" Height="23"  Name="txtWebService" Text="http://moon.sublimeintervevntion.com/WebServices/WebServices.asmx" />
+
+                    <TextBlock Grid.Column="0" Grid.Row="1" Height="28" Name="lblUser"  Text="User:" />
+                    <TextBox Grid.Column="1" Grid.Row="1" Height="23"  Name="txtUser" />
+
+                    <TextBlock Grid.Column="0" Grid.Row="2"  Height="28"  Name="lblPassword" Text="Password:" />
+                    <PasswordBox Grid.Column="1" Grid.Row="2" Height="23" Name="txtPassword"  />
+
+                    <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Content="Continue" Name="cmdContinue"  Click="cmdContinue_Click" />
+                    <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Name="cmdIncreaseISOStorage" Content="Increase ISO Storage Size" Click="cmdIncreaseISOStorage_Click" />
+                </Grid>
+            </sdk:TabItem>
+            <sdk:TabItem Header="Graph" Name="tabGraph">
+                <Grid Name="gridGraph">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                        <RowDefinition Height="25" />
+                    </Grid.RowDefinitions>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" >
+                        <Canvas Name="cvsTests" VerticalAlignment="Top" MouseMove="cvsTests_MouseMove" MouseLeftButtonDown="cvsTests_MouseLeftButtonDown" />
+                    </ScrollViewer>
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+                        <Grid Name="gridTestDetails" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                        </Grid>
+                    </ScrollViewer>
+                    <CheckBox Grid.Column="0" Grid.Row="2" Name="chkOnlyFailedTests" Content="Only show tests that failed in the last revision" IsChecked="True" Checked="chkOnlyFailedTests_CheckedChanged" Unchecked="chkOnlyFailedTests_CheckedChanged" />
+                    <CheckBox Grid.Column="1" Grid.Row="2" Name="chkStickyResults" Content="Sticky test results (click on test square to check)" Checked="chkStickyTestResults_CheckedChanged" Unchecked="chkStickyTestResults_CheckedChanged" />
+                    <CheckBox Grid.Column="3" Grid.Row="2" Name="chkHideRevisions" Content="Hide revisions" Checked="chkHideRevisions_CheckedChanged" Unchecked="chkHideRevisions_CheckedChanged" />
+                    <Button Grid.Column="2" Grid.Row="3" Name="cmdRefresh" Content="Refresh" Click="cmdRefresh_Click" />
+                    <TextBlock Grid.Column="0" Grid.Row="3" Name="lblRevisions" Text="Revisions to fetch:" />
+                    <TextBox Grid.Column="1" Grid.Row="3" Name="txtRevisions" Text="50" TextAlignment="Center" />
+                    <TextBlock Grid.Column="0" Grid.Row="4" Name="lblAreas" Text="Filters (area / id) - comma separated lists (case insensitive)" />
+                    <ComboBox Grid.Column="1" Grid.Row="4" Name="cmbAreas" SelectionChanged="cmbAreas_SelectionChanged" />
+                    <TextBox Grid.Column="2" Grid.Row="4" Name="txtID" TextChanged="txtID_TextChanged" />
+                    <TextBlock Name="txtStatus" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3"/>
+                </Grid>
+            </sdk:TabItem>
+            <sdk:TabItem Header="Logs" Name="tabLogs">
+                <Grid Name="gridLogs">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <ComboBox  Grid.Column="0" Grid.Row="0" Name="cmbRepositories" Height="24"  VerticalAlignment="Top" SelectionChanged="cmbRepositories_SelectionChanged" />
+                    <ListBox   Grid.Column="0" Grid.Row="1" Name="lstLanes"  SelectionMode="Extended" />
+                    <ListBox   Grid.Column="0" Grid.Row="2" Name="lstHosts" />
+                    <ListBox   Grid.Column="0" Grid.Row="3" Name="lstRevisions" />
+                    <Button    Grid.Column="1" Grid.Row="0" Name="cmdClear" Content="Clear" Click="cmdClear_Click" />
+                    <Button    Grid.Column="1" Grid.Row="1" Name="cmdClearNoFiles" Content="Clear, but not files" Click="cmdClearNoFiles_Click" />
+                    <ListBox   Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Name="lstWork"  />
+                    <ListBox   Grid.Column="1" Grid.Row="4" Grid.RowSpan="3" Name="lstLog"  />
+                </Grid>
+            </sdk:TabItem>
+        </sdk:TabControl>
+    </Grid>
+</UserControl>

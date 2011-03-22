@@ -1,0 +1,28 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="WebServicesSoap" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+                <binding name="WebServicesSoap1" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+                <binding name="WebServicesSoap2" maxBufferSize="2147483647" maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://moon.sublimeintervention.com/WebServices/WebServices.asmx"
+                binding="basicHttpBinding" bindingConfiguration="WebServicesSoap1"
+                contract="MonkeyWrench.WebServicesSoap" name="si.com" />
+            <endpoint address="http://192.168.1.4:8123/WebServices/WebServices.asmx"
+                binding="basicHttpBinding" bindingConfiguration="WebServicesSoap"
+                contract="MonkeyWrench.WebServicesSoap" name="localhost" />
+            <endpoint address="http://moon.sublimeintervention.com/WebServices/WebServices.asmx"
+                binding="basicHttpBinding" bindingConfiguration="WebServicesSoap2"
+                contract="MonkeyWrench.WebServicesSoap" name="WebServicesSoap" />
+        </client>
+    </system.serviceModel>
+</configuration>
